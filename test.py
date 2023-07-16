@@ -84,7 +84,7 @@ def get_words():
     collection_name = "dictionary"
 
     # Connect to MongoDB
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ##client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
     database = client[database_name]
     collection = database[collection_name]
     words = []
@@ -96,7 +96,7 @@ def get_words():
 
 @app.route('/add_word', methods=['POST'])
 def add_word():
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ##client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
     db = client['KreolDB']
     collection = db['dictionary']
     word = request.form.get('word', '').strip()
@@ -115,7 +115,7 @@ def add_word():
 
 @app.route('/check_word', methods=['POST'])
 def check_word():
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ##client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
     db = client['KreolDB']
     collection = db['dictionary']
     word = request.form.get('word')
@@ -132,7 +132,7 @@ def check_word():
 
 @app.route('/delete_word', methods=['POST'])
 def delete_word():
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ## = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
     db = client['KreolDB']
     collection = db['dictionary']
     word = request.form.get('word')
@@ -155,7 +155,7 @@ def delete_word():
 
 @app.route('/get-words-from-mongo', methods=['GET'])
 def get_words_from_mongo():
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ##client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
     db = client['KreolDB']
     collection = db['dictionary']
     result = collection.find({}, {'_id': 0, 'word': 1}).sort('word', 1)
@@ -170,7 +170,7 @@ def get_words_from_mongo():
 def uname_upass():
 
     # Connect to the MongoDB instance
-    client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
+    ##client = MongoClient(connectionstring, ssl_cert_reqs=ssl.CERT_NONE)
 
     # Get a reference to the database
     db = client['KreolDB']
@@ -772,5 +772,5 @@ def processVal(value):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-    #app.run(debug=True)
+    #app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
